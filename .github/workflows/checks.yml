@@ -1,0 +1,15 @@
+name: Offline checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hardware-independent regression checks
+        shell: pwsh
+        run: ./run-public-checks.ps1
